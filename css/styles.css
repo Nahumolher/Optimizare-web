@@ -1,0 +1,344 @@
+/* ==========================================================================
+   OPTIMIZARE | Energía Solar & Gas — Custom Styles
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Variables globales
+   -------------------------------------------------------------------------- */
+:root {
+    --accent: #2dc866;
+    --dark-bg: #0c1f11;
+    --dark-bg-2: #0f2916;
+    --font-sans: 'Inter', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+    --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-image: cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+body {
+    font-family: var(--font-sans);
+    background-color: #0c1f11;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+.font-serif {
+    font-family: var(--font-serif);
+}
+
+/* --------------------------------------------------------------------------
+   Hero — Logo con máscara de imagen
+   -------------------------------------------------------------------------- */
+.hero-logo {
+    font-size: 12vw;
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    line-height: 0.7;
+    color: #ffffff;
+    -webkit-text-fill-color: rgba(255,255,255,0.92);
+    z-index: 10;
+    text-shadow: 0 0 80px rgba(100,200,130,0.25), 0 2px 40px rgba(0,0,0,0.6);
+}
+
+/* --------------------------------------------------------------------------
+   Horizontal Scroll
+   -------------------------------------------------------------------------- */
+.horizontal-wrap {
+    display: flex;
+    width: 400vw;
+    height: 100vh;
+}
+
+.h-panel {
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+    padding: 0 8vw;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Overlay semitransparente para legibilidad sobre fondos con imagen */
+.panel-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 100%);
+    z-index: 1;
+}
+
+.panel-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   Service Rows (svc-row)
+   -------------------------------------------------------------------------- */
+.svc-row {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Foto de fondo */
+.svc-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 0;
+}
+
+.svc-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.svc-row:hover .svc-bg {
+    opacity: 1;
+}
+
+/* Layout interno */
+.svc-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3.5rem 5rem;
+    gap: 2rem;
+}
+
+@media (max-width: 767px) {
+    .svc-inner {
+        padding: 2.5rem 2rem;
+    }
+}
+
+/* Descripción derecha */
+.svc-desc {
+    width: 260px;
+    flex-shrink: 0;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    text-align: right;
+}
+
+.svc-row:hover .svc-desc {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@media (max-width: 767px) {
+    .svc-desc {
+        display: none;
+    }
+}
+
+/* Título izquierdo */
+.svc-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-right: auto;
+}
+
+.svc-title {
+    font-size: clamp(3rem, 8vw, 9rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #ffffff;
+    transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), color 0.4s ease;
+    white-space: nowrap;
+}
+
+.svc-row:hover .svc-title {
+    transform: translateY(-8px);
+    color: #2dc866;
+}
+
+/* Flecha */
+.svc-arrow {
+    font-size: clamp(1.5rem, 3vw, 3rem);
+    color: #2dc866;
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+    flex-shrink: 0;
+}
+
+.svc-row:hover .svc-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+    /* Legacy service-row (keep for compatibility) */
+    .service-row {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        transition: all 0.6s var(--transition-smooth);
+        position: relative;
+        z-index: 1;
+    }
+
+/* --------------------------------------------------------------------------
+   Reveal Animations
+   -------------------------------------------------------------------------- */
+.reveal-text {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.reveal-text span {
+    display: block;
+    transform: translateY(110%);
+}
+
+/* --------------------------------------------------------------------------
+   News Cards
+   -------------------------------------------------------------------------- */
+.news-card img {
+    transition: transform 1.2s var(--transition-image);
+}
+
+.news-card:hover img {
+    transform: scale(1.1);
+}
+
+/* --------------------------------------------------------------------------
+   Contact Form
+   -------------------------------------------------------------------------- */
+
+/* Focus ring para inputs del formulario */
+input:focus,
+select:focus,
+textarea:focus {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15);
+}
+
+/* Select arrow personalizado */
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.5rem center;
+}
+
+/* Animación del botón CTA del hero */
+#hero-cta {
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+html.lenis {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Menu
+   -------------------------------------------------------------------------- */
+#mobile-menu {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+#mobile-menu.menu-open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive — Mobile
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+
+    /* Hero logo más compacto */
+    .hero-logo {
+        font-size: 20vw;
+    }
+
+    /* Horizontal scroll → apilado vertical */
+    .horizontal-wrap {
+        flex-direction: column !important;
+        width: 100% !important;
+        height: auto !important;
+        transform: none !important;
+    }
+
+    .h-panel {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100svh;
+        padding: 6rem 1.5rem 4rem;
+    }
+
+    /* Service row font sizes */
+    .service-row h3 {
+        font-size: 2.75rem !important;
+        line-height: 1;
+    }
+
+    /* Support grid card heights */
+    #ahorro .rounded-\[40px\] {
+        height: 260px !important;
+    }
+
+    /* Success cases cards */
+    .news-card .rounded-\[60px\] {
+        border-radius: 2rem !important;
+    }
+
+    /* Success case headings */
+    .news-card h4 {
+        font-size: 1.75rem !important;
+        line-height: 1.2;
+    }
+
+    /* Horizontal scroll slide 2 cards */
+    #horizontal-wrapper .rounded-\[40px\] {
+        height: 260px !important;
+    }
+
+    /* Service items — disable desc reveal on mobile (no hover) */
+    .service-item .service-desc {
+        display: none;
+    }
+
+    /* Service items font size */
+    .service-title {
+        font-size: 2.75rem !important;
+        line-height: 1;
+    }
+
+    /* Services details expand */
+    .service-row:hover .details {
+        max-height: 400px;
+    }
+
+    /* Reduce service-row padding on hover */
+    .service-row:hover {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Floating decorative image in nosotros already hidden md:block */
+
+    /* WhatsApp button smaller on mobile */
+    .fixed.bottom-8.right-8 {
+        width: 3rem;
+        height: 3rem;
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+}

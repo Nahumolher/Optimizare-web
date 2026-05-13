@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalaciones · OPTIMIZARE | Paneles Solares Certificados</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        :root {
+            --accent: #2dc866;
+            --dark-bg: #0c1f11;
+            --font-sans: 'Inter', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        .step-line {
+            position: absolute;
+            left: 2rem;
+            top: 4.5rem;
+            bottom: -1px;
+            width: 1px;
+            background: linear-gradient(to bottom, rgba(45,200,102,0.5), rgba(45,200,102,0));
+        }
+
+        .cert-card {
+            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease;
+        }
+        .cert-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(45,200,102,0.5);
+        }
+
+        .type-card {
+            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+        }
+        .type-card:hover .type-img {
+            transform: scale(1.06);
+        }
+        .type-img {
+            transition: transform 1s cubic-bezier(0.2,0,0.2,1);
+        }
+
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .number-big {
+            font-size: clamp(5rem, 10vw, 9rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.05em;
+            color: rgba(45,200,102,0.12);
+        }
+    </style>
+</head>
+<body class="antialiased" style="background-color: #0c1f11; color: #ffffff;">
+
+    <!-- ===== NAVEGACIÓN ===== -->
+    <nav class="fixed top-0 w-full z-[100] px-8 md:px-10 py-6 md:py-8 flex justify-between items-center mix-blend-difference text-white">
+        <div class="flex items-center">
+            <a href="index.html">
+                <img src="img/1.png" alt="Optimizare" class="h-28 w-auto" style="filter: brightness(0) invert(1);">
+            </a>
+        </div>
+        <div class="hidden md:flex space-x-8 text-[10px] font-bold uppercase tracking-[0.2em]">
+            <a href="index.html#servicios" class="hover:opacity-60 transition">Servicios</a>
+            <a href="instalaciones.html" class="opacity-100 transition" style="color:#2dc866; -webkit-text-fill-color:#2dc866;">Instalaciones</a>
+            <a href="index.html#ahorro" class="hover:opacity-60 transition">Ahorro</a>
+            <a href="index.html#nosotros" class="hover:opacity-60 transition">Nosotros</a>
+            <a href="index.html#contacto" class="hover:opacity-60 transition">Contacto</a>
+        </div>
+        <a href="index.html#contacto" class="hidden md:inline-block border border-white/40 px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">Pedir Presupuesto</a>
+        <!-- Hamburger (solo mobile) -->
+        <button id="menu-toggle" class="md:hidden flex flex-col justify-center items-end gap-[6px] w-8 h-8" aria-label="Abrir menú">
+            <span class="ham-line block w-6 h-[2px] bg-white transition-all duration-300 origin-center"></span>
+            <span class="ham-line block w-6 h-[2px] bg-white transition-all duration-300 origin-center"></span>
+            <span class="ham-line block w-4 h-[2px] bg-white transition-all duration-300 origin-center"></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black text-white z-[90] flex flex-col items-center justify-center" style="display:none!important">
+        <div class="flex flex-col items-center space-y-8 text-4xl font-black uppercase tracking-tighter">
+            <a href="index.html#servicios" class="mobile-nav-link hover:opacity-50 transition">Servicios</a>
+            <a href="instalaciones.html" class="mobile-nav-link hover:opacity-50 transition" style="color:#2dc866;">Instalaciones</a>
+            <a href="index.html#ahorro" class="mobile-nav-link hover:opacity-50 transition">Ahorro</a>
+            <a href="index.html#nosotros" class="mobile-nav-link hover:opacity-50 transition">Nosotros</a>
+            <a href="index.html#contacto" class="mobile-nav-link hover:opacity-50 transition">Contacto</a>
+            <a href="index.html#contacto" class="mobile-nav-link mt-4 border border-white/40 px-8 py-3 rounded-full text-base font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">Pedir Presupuesto</a>
+        </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style="background-color: #0b1a10;">
+        <div class="absolute inset-0 opacity-35 pointer-events-none">
+            <img src="img/instalacion%202.jpg" class="w-full h-full object-cover" alt="Instalación fotovoltaica" style="filter: saturate(0.5) brightness(0.55);">
+        </div>
+        <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(11,26,16,0.3) 0%, rgba(11,26,16,0.7) 100%);"></div>
+
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+            <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-green-400 mb-6 reveal-up">Instalaciones Certificadas</p>
+            <h1 class="text-5xl md:text-7xl lg:text-9xl font-black tracking-tighter leading-none mb-8 reveal-up" style="transition-delay: 0.1s;">
+                Placas Solares.<br>
+                <span class="italic font-serif font-normal text-green-300 text-4xl md:text-6xl lg:text-7xl">Paso a paso.</span>
+            </h1>
+            <p class="text-xl text-gray-300 font-light max-w-2xl mx-auto mb-12 reveal-up" style="transition-delay: 0.2s;">
+                Desde el estudio de viabilidad hasta la legalización ante Red Eléctrica. Todo incluido, sin sorpresas.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center reveal-up" style="transition-delay: 0.3s;">
+                <a href="#proceso" class="inline-block px-10 py-4 rounded-full text-sm font-bold uppercase tracking-widest text-black transition hover:scale-105 shadow-xl" style="background:#2dc866;">Ver el proceso →</a>
+                <a href="index.html#contacto" class="inline-block px-10 py-4 rounded-full text-sm font-bold uppercase tracking-widest border border-white/30 hover:bg-white hover:text-black transition">Solicitar presupuesto</a>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 text-[10px] uppercase tracking-widest font-bold text-white opacity-40 animate-pulse">Descubre más</div>
+    </section>
+
+    <!-- ===== STATS RÁPIDOS ===== -->
+    <section class="py-16 px-8 md:px-24 border-b border-white/10" style="background-color: #0c1f11;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div class="reveal-up">
+                <p class="text-4xl md:text-6xl font-black tracking-tighter text-white mb-2">+500</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Instalaciones realizadas</p>
+            </div>
+            <div class="reveal-up" style="transition-delay:0.1s;">
+                <p class="text-4xl md:text-6xl font-black tracking-tighter text-white mb-2">25 años</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Garantía de paneles</p>
+            </div>
+            <div class="reveal-up" style="transition-delay:0.2s;">
+                <p class="text-4xl md:text-6xl font-black tracking-tighter text-white mb-2">&lt; 30 días</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500">De estudio a puesta en marcha</p>
+            </div>
+            <div class="reveal-up" style="transition-delay:0.3s;">
+                <p class="text-4xl md:text-6xl font-black tracking-tighter" style="color:#2dc866;">70%</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Ahorro medio en factura</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TIPOS DE INSTALACIÓN ===== -->
+    <section class="py-24 md:py-40 px-8 md:px-24" style="background-color: #0f2916;">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 md:mb-24">
+                <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-green-400 mb-4 reveal-up">Modalidades</p>
+                <h2 class="text-4xl md:text-7xl font-black tracking-tighter leading-none reveal-up" style="transition-delay:0.1s;">Tipos de instalación</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Residencial -->
+                <div class="type-card rounded-[32px] overflow-hidden border border-white/10 relative group" style="background: rgba(255,255,255,0.03);">
+                    <div class="h-64 overflow-hidden">
+                        <img src="img/instalacion.jpg" class="type-img w-full h-full object-cover opacity-80" alt="Instalación residencial">
+                    </div>
+                    <div class="p-8">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-green-400 mb-3">01 · Residencial</p>
+                        <h3 class="text-2xl font-black tracking-tight mb-4 text-white">Viviendas y autónomos</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Instalaciones de entre 3 y 15 kWp para viviendas unifamiliares y locales de autónomos. Ideales para cubiertas inclinadas o planas con tejado propio.</p>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li class="flex items-start gap-2"><span style="color:#2dc866;" class="mt-1 flex-shrink-0">✓</span> De 4 a 20 paneles</li>
+                            <li class="flex items-start gap-2"><span style="color:#2dc866;" class="mt-1 flex-shrink-0">✓</span> Inversor monofásico o trifásico</li>
+                            <li class="flex items-start gap-2"><span style="color:#2dc866;" class="mt-1 flex-shrink-0">✓</span> Opción de batería de almacenamiento</li>
+                            <li class="flex items-start gap-2"><span style="color:#2dc866;" class="mt-1 flex-shrink-0">✓</span> Amortización en 4–6 años</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- PYME -->
+                <div class="type-card rounded-[32px] overflow-hidden border border-white/10 relative group md:mt-10" style="background: rgba(255,255,255,0.03);">
+                    <div class="h-64 overflow-hidden">
+                        <img src="img/edificio%20placa.jpg" class="type-img w-full h-full object-cover opacity-80" alt="Instalación empresas PYME">
+                    </div>
+                    <div class="p-8">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-green-400 mb-3">02 · PYME</p>
+                        <h3 class="text-2xl font-black tracking-tight mb-4 text-white">Empresas medianas</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Para empresas con consumos de entre 20.000 y 200.000 kWh/año. Instalaciones de 15 a 100 kWp sobre cubierta industrial o nave.</p>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li class="flex items-start gap-2"><span style="color:#2dc866;" class="mt-1 flex-shrink-0">✓</span> De 20 a 100 paneles</li>
+                            <li class="flex items-start gap-2"><span style="color:#2dc866;" class="mt-1 flex-shrink-0">✓</span> Inversor trifásico industrial</li>
+                            <li class="flex items-start gap-2"><span style="color:#2dc866;" class="mt-1 flex-shrink-0">✓</span> Monitorización remota 24/7</li>
+                            <li class="flex items-start gap-2"><span style="color:#2dc866;" class="mt-1 flex-shrink-0">✓</span> Amortización en 3–5 años</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Industrial -->
+                <div class="type-card rounded-[32px] overflow-hidden border border-white/10 relative group" style="background: rgba(255,255,255,0.03);">
+                    <div class="h-64 overflow-hidden">
+                        <img src="img/placa%20industria.jpg" class="type-img w-full h-full object-cover opacity-80" alt="Instalación industrial">
+                    </div>
+                    <div class="p-8">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-green-400 mb-3">03 · Industrial</p>
+                        <h3 class="text-2xl font-black tracking-tight mb-4 text-white">Grandes instalaciones</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Proyectos superiores a 100 kWp para grandes empresas, polígonos industriales y comunidades de propietarios. Gestión energética centralizada.</p>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li class="flex items-start gap-2"><span style="color:#2dc866;" class="mt-1 flex-shrink-0">✓</span> +100 paneles</li>
+                            <li class="flex items-start gap-2"><span style="color:#2dc866;" class="mt-1 flex-shrink-0">✓</span> Gestión activa de la energía</li>
+                            <li class="flex items-start gap-2"><span style="color:#2dc866;" class="mt-1 flex-shrink-0">✓</span> Compensación de excedentes</li>
+                            <li class="flex items-start gap-2"><span style="color:#2dc866;" class="mt-1 flex-shrink-0">✓</span> Amortización en 2–4 años</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROCESO PASO A PASO ===== -->
+    <section id="proceso" class="py-24 md:py-40 px-8 md:px-24" style="background-color: #0c1f11;">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 md:mb-24">
+                <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-green-400 mb-4 reveal-up">De principio a fin</p>
+                <h2 class="text-4xl md:text-7xl font-black tracking-tighter leading-none reveal-up" style="transition-delay:0.1s;">El proceso de instalación</h2>
+                <p class="text-gray-400 mt-6 max-w-xl text-lg leading-relaxed reveal-up" style="transition-delay:0.2s;">Nos encargamos de todo. Tú solo tienes que decirnos que quieres empezar a ahorrar.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+
+                <!-- Paso 1 -->
+                <div class="relative rounded-[32px] p-8 md:p-10 border border-white/10 reveal-up" style="background: rgba(255,255,255,0.03);">
+                    <span class="number-big absolute top-4 right-6 select-none pointer-events-none">01</span>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 flex-shrink-0" style="background: rgba(45,200,102,0.15); border: 1px solid rgba(45,200,102,0.3);">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="#2dc866" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-black tracking-tight text-white mb-3">Estudio de viabilidad gratuito</h3>
+                        <p class="text-gray-400 leading-relaxed mb-4">Analizamos tu factura eléctrica, el consumo real de tu instalación y las características de tu cubierta o tejado. En 48 horas tienes un informe completo con el dimensionado óptimo y el retorno estimado.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">Análisis de factura</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">Medición de cubierta</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">Informe de ahorro</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="relative rounded-[32px] p-8 md:p-10 border border-white/10 reveal-up" style="background: rgba(255,255,255,0.03); transition-delay: 0.1s;">
+                    <span class="number-big absolute top-4 right-6 select-none pointer-events-none">02</span>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 flex-shrink-0" style="background: rgba(45,200,102,0.15); border: 1px solid rgba(45,200,102,0.3);">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="#2dc866" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-black tracking-tight text-white mb-3">Diseño y proyecto técnico</h3>
+                        <p class="text-gray-400 leading-relaxed mb-4">Nuestro equipo de ingenieros elabora el proyecto técnico completo: planos de instalación, cálculo estructural de la cubierta, selección de materiales y cableado. Todo según normativa RD 244/2019.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">Planos eléctricos</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">Cálculo estructural</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">RD 244/2019</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="relative rounded-[32px] p-8 md:p-10 border border-white/10 reveal-up" style="background: rgba(255,255,255,0.03); transition-delay: 0.15s;">
+                    <span class="number-big absolute top-4 right-6 select-none pointer-events-none">03</span>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 flex-shrink-0" style="background: rgba(45,200,102,0.15); border: 1px solid rgba(45,200,102,0.3);">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="#2dc866" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-black tracking-tight text-white mb-3">Tramitación administrativa</h3>
+                        <p class="text-gray-400 leading-relaxed mb-4">Gestionamos todos los permisos: licencia municipal de obras (si aplica), solicitud de punto de conexión a la distribuidora, y el registro de la instalación en el organismo autonómico correspondiente. Sin burocracia para ti.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">Licencia municipal</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">Punto de conexión</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">Registro autonómico</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paso 4 -->
+                <div class="relative rounded-[32px] p-8 md:p-10 border border-white/10 reveal-up" style="background: rgba(255,255,255,0.03); transition-delay: 0.2s;">
+                    <span class="number-big absolute top-4 right-6 select-none pointer-events-none">04</span>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 flex-shrink-0" style="background: rgba(45,200,102,0.15); border: 1px solid rgba(45,200,102,0.3);">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="#2dc866" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-black tracking-tight text-white mb-3">Instalación física</h3>
+                        <p class="text-gray-400 leading-relaxed mb-4">Nuestro equipo de instaladores certificados monta los paneles, el inversor, el cuadro de protecciones y todo el cableado en un plazo de 1 a 3 días según el tamaño. Dejamos la instalación limpia y operativa.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">Técnicos homologados</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">1–3 días de obra</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">Materiales premium</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paso 5 -->
+                <div class="relative rounded-[32px] p-8 md:p-10 border border-white/10 reveal-up" style="background: rgba(255,255,255,0.03); transition-delay: 0.25s;">
+                    <span class="number-big absolute top-4 right-6 select-none pointer-events-none">05</span>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 flex-shrink-0" style="background: rgba(45,200,102,0.15); border: 1px solid rgba(45,200,102,0.3);">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="#2dc866" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-black tracking-tight text-white mb-3">Legalización y puesta en marcha</h3>
+                        <p class="text-gray-400 leading-relaxed mb-4">Presentamos el certificado de instalación eléctrica (CIE) ante industria, tramitamos el número de autoconsumo con la distribuidora y activamos la compensación de excedentes en tu contrato de luz.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">CIE ante industria</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">CUPS autoconsumo</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">Excedentes activados</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paso 6 -->
+                <div class="relative rounded-[32px] p-8 md:p-10 border border-white/10 reveal-up" style="background: rgba(255,255,255,0.03); transition-delay: 0.3s;">
+                    <span class="number-big absolute top-4 right-6 select-none pointer-events-none">06</span>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 flex-shrink-0" style="background: rgba(45,200,102,0.15); border: 1px solid rgba(45,200,102,0.3);">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="#2dc866" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-black tracking-tight text-white mb-3">Monitorización y mantenimiento</h3>
+                        <p class="text-gray-400 leading-relaxed mb-4">Accede a tu producción en tiempo real desde la app. Revisamos el rendimiento de tu instalación de forma proactiva y ofrecemos mantenimiento preventivo y correctivo incluido el primer año.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">App de monitorización</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">Mantenimiento 1er año</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border border-white/10 text-gray-400">Soporte técnico</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CERTIFICADOS Y NORMATIVA ===== -->
+    <section class="py-24 md:py-40 px-8 md:px-24" style="background-color: #0f2916;">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 md:mb-24 grid grid-cols-1 lg:grid-cols-2 gap-10 items-end">
+                <div>
+                    <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-green-400 mb-4 reveal-up">Garantías y legalidad</p>
+                    <h2 class="text-4xl md:text-7xl font-black tracking-tighter leading-none reveal-up" style="transition-delay:0.1s;">Certificados y<br>normativa</h2>
+                </div>
+                <p class="text-gray-400 text-lg leading-relaxed reveal-up" style="transition-delay:0.2s;">Cada instalación de Optimizare cumple con toda la normativa vigente en España. Entregamos toda la documentación técnica y legal necesaria para que tu inversión esté completamente protegida.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div class="cert-card rounded-[28px] p-8 border border-white/10" style="background: rgba(255,255,255,0.03);">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(45,200,102,0.12); border: 1px solid rgba(45,200,102,0.25);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#2dc866" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                        </svg>
+                    </div>
+                    <p class="text-xs font-bold uppercase tracking-widest text-green-400 mb-2">Normativa eléctrica</p>
+                    <h4 class="text-xl font-black text-white mb-3">REBT — ITC-BT</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Todas las instalaciones eléctricas cumplen el Reglamento Electrotécnico de Baja Tensión (RD 842/2002) y sus instrucciones técnicas complementarias. Certificado oficial emitido por técnico competente.</p>
+                </div>
+
+                <div class="cert-card rounded-[28px] p-8 border border-white/10" style="background: rgba(255,255,255,0.03);">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(45,200,102,0.12); border: 1px solid rgba(45,200,102,0.25);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#2dc866" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </div>
+                    <p class="text-xs font-bold uppercase tracking-widest text-green-400 mb-2">Autoconsumo</p>
+                    <h4 class="text-xl font-black text-white mb-3">RD 244/2019</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Cumplimiento del Real Decreto 244/2019 que regula el autoconsumo fotovoltaico en España. Tramitamos el registro ante el MITECO y la activación de la compensación de excedentes con tu comercializadora.</p>
+                </div>
+
+                <div class="cert-card rounded-[28px] p-8 border border-white/10" style="background: rgba(255,255,255,0.03);">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(45,200,102,0.12); border: 1px solid rgba(45,200,102,0.25);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#2dc866" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2v16z"/>
+                        </svg>
+                    </div>
+                    <p class="text-xs font-bold uppercase tracking-widest text-green-400 mb-2">Garantía de producto</p>
+                    <h4 class="text-xl font-black text-white mb-3">25 años de garantía</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Los paneles que instalamos incluyen 25 años de garantía de rendimiento lineal (mínimo 80% al año 25) y 12 años de garantía de producto. Los inversores cuentan con 10 años de garantía del fabricante.</p>
+                </div>
+
+                <div class="cert-card rounded-[28px] p-8 border border-white/10" style="background: rgba(255,255,255,0.03);">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(45,200,102,0.12); border: 1px solid rgba(45,200,102,0.25);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#2dc866" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <p class="text-xs font-bold uppercase tracking-widest text-green-400 mb-2">Eficiencia energética</p>
+                    <h4 class="text-xl font-black text-white mb-3">Certificado energético</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Tras la instalación emitimos el certificado de eficiencia energética actualizado del inmueble, que refleja la mejora de la calificación energética gracias a la generación fotovoltaica.</p>
+                </div>
+
+                <div class="cert-card rounded-[28px] p-8 border border-white/10" style="background: rgba(255,255,255,0.03);">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(45,200,102,0.12); border: 1px solid rgba(45,200,102,0.25);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#2dc866" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
+                        </svg>
+                    </div>
+                    <p class="text-xs font-bold uppercase tracking-widest text-green-400 mb-2">Medio ambiente</p>
+                    <h4 class="text-xl font-black text-white mb-3">Huella de carbono cero</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Cada instalación incluye el cálculo de la reducción de emisiones de CO₂. Entregamos un informe de sostenibilidad que puedes usar para cumplir con tus compromisos ESG o auditorías medioambientales.</p>
+                </div>
+
+                <div class="cert-card rounded-[28px] p-8 border border-white/10" style="background: rgba(255,255,255,0.03);">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(45,200,102,0.12); border: 1px solid rgba(45,200,102,0.25);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#2dc866" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                    </div>
+                    <p class="text-xs font-bold uppercase tracking-widest text-green-400 mb-2">Seguridad</p>
+                    <h4 class="text-xl font-black text-white mb-3">Seguro de instalación</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">La instalación queda cubierta por nuestro seguro de responsabilidad civil durante la ejecución de los trabajos. Además te asesoramos para incluir los paneles en el seguro de tu hogar o empresa.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DOCUMENTACIÓN QUE ENTREGAMOS ===== -->
+    <section class="py-24 md:py-40 px-8 md:px-24" style="background-color: #ffffff; color: #111111;">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 text-center">
+                <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-green-600 mb-4 reveal-up">Documentación completa</p>
+                <h2 class="text-4xl md:text-6xl font-black tracking-tighter leading-none reveal-up" style="transition-delay:0.1s;">Todo lo que recibes</h2>
+                <p class="text-gray-500 mt-6 max-w-xl mx-auto text-lg reveal-up" style="transition-delay:0.2s;">Al finalizar la instalación te entregamos un dossier completo con toda la documentación técnica, legal y de garantía.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                <div class="flex items-start gap-4 p-6 rounded-[20px] border border-gray-100 reveal-up" style="transition-delay:0.05s;">
+                    <span class="text-2xl flex-shrink-0 mt-1" style="color:#2dc866;">→</span>
+                    <div>
+                        <h4 class="font-black text-gray-900 mb-1">Proyecto técnico firmado</h4>
+                        <p class="text-sm text-gray-500">Memoria técnica, planos eléctricos y cálculos firmados por ingeniero colegiado.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-6 rounded-[20px] border border-gray-100 reveal-up" style="transition-delay:0.1s;">
+                    <span class="text-2xl flex-shrink-0 mt-1" style="color:#2dc866;">→</span>
+                    <div>
+                        <h4 class="font-black text-gray-900 mb-1">Certificado de Instalación Eléctrica (CIE)</h4>
+                        <p class="text-sm text-gray-500">Documento oficial sellado por la consejería de industria de tu comunidad autónoma.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-6 rounded-[20px] border border-gray-100 reveal-up" style="transition-delay:0.15s;">
+                    <span class="text-2xl flex-shrink-0 mt-1" style="color:#2dc866;">→</span>
+                    <div>
+                        <h4 class="font-black text-gray-900 mb-1">Registro de autoconsumo (MITECO)</h4>
+                        <p class="text-sm text-gray-500">Número de registro oficial de tu instalación de autoconsumo en el catastro energético.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-6 rounded-[20px] border border-gray-100 reveal-up" style="transition-delay:0.2s;">
+                    <span class="text-2xl flex-shrink-0 mt-1" style="color:#2dc866;">→</span>
+                    <div>
+                        <h4 class="font-black text-gray-900 mb-1">Certificados de los paneles e inversor</h4>
+                        <p class="text-sm text-gray-500">Fichas técnicas, certificados IEC, hoja de garantía del fabricante y número de serie de cada panel.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-6 rounded-[20px] border border-gray-100 reveal-up" style="transition-delay:0.25s;">
+                    <span class="text-2xl flex-shrink-0 mt-1" style="color:#2dc866;">→</span>
+                    <div>
+                        <h4 class="font-black text-gray-900 mb-1">Manual de uso y monitorización</h4>
+                        <p class="text-sm text-gray-500">Guía detallada para consultar tu producción en la app y entender los parámetros clave de tu instalación.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-6 rounded-[20px] border border-gray-100 reveal-up" style="transition-delay:0.3s;">
+                    <span class="text-2xl flex-shrink-0 mt-1" style="color:#2dc866;">→</span>
+                    <div>
+                        <h4 class="font-black text-gray-900 mb-1">Informe de reducción de CO₂</h4>
+                        <p class="text-sm text-gray-500">Cálculo de la reducción de emisiones anuales y el equivalente en árboles plantados o km en coche.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-6 rounded-[20px] border border-gray-100 reveal-up" style="transition-delay:0.35s;">
+                    <span class="text-2xl flex-shrink-0 mt-1" style="color:#2dc866;">→</span>
+                    <div>
+                        <h4 class="font-black text-gray-900 mb-1">Acceso a financiación sin intereses</h4>
+                        <p class="text-sm text-gray-500">Facilitamos el acceso a líneas ICO y financiación a 0% para instalaciones residenciales y empresariales.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-6 rounded-[20px] border border-gray-100 reveal-up" style="transition-delay:0.4s;">
+                    <span class="text-2xl flex-shrink-0 mt-1" style="color:#2dc866;">→</span>
+                    <div>
+                        <h4 class="font-black text-gray-900 mb-1">Gestión de subvenciones</h4>
+                        <p class="text-sm text-gray-500">Te ayudamos a tramitar las subvenciones del PREE, fondos Next Generation EU y deducciones fiscales en IRPF/IS.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALERÍA ===== -->
+    <section class="py-16 px-8 md:px-24" style="background-color: #0c1f11;">
+        <div class="max-w-7xl mx-auto">
+            <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-green-400 mb-10 reveal-up">Nuestros trabajos</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-square rounded-[24px] overflow-hidden reveal-up">
+                    <img src="img/instalacion.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="Instalación residencial">
+                </div>
+                <div class="aspect-square rounded-[24px] overflow-hidden reveal-up md:mt-8" style="transition-delay:0.1s;">
+                    <img src="img/instalacion%202.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="Instalación cubierta">
+                </div>
+                <div class="aspect-square rounded-[24px] overflow-hidden reveal-up" style="transition-delay:0.2s;">
+                    <img src="img/placa%20industria.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="Campo solar industrial">
+                </div>
+                <div class="aspect-square rounded-[24px] overflow-hidden reveal-up md:mt-8" style="transition-delay:0.3s;">
+                    <img src="img/instalacion%203.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="Instalación técnica">
+                </div>
+                <div class="aspect-square rounded-[24px] overflow-hidden reveal-up" style="transition-delay:0.1s;">
+                    <img src="img/placa%201.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="Panel solar">
+                </div>
+                <div class="aspect-square rounded-[24px] overflow-hidden reveal-up md:mt-8" style="transition-delay:0.2s;">
+                    <img src="img/planos.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="Planos técnicos">
+                </div>
+                <div class="aspect-square rounded-[24px] overflow-hidden reveal-up" style="transition-delay:0.3s;">
+                    <img src="img/edificio%20placa.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="Edificio con placas">
+                </div>
+                <div class="aspect-square rounded-[24px] overflow-hidden reveal-up md:mt-8" style="transition-delay:0.4s;">
+                    <img src="img/placa%202.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="Paneles solares">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA FINAL ===== -->
+    <section class="py-24 md:py-40 px-8 md:px-24 text-center" style="background: linear-gradient(135deg, #0a1a0d 0%, #0f2916 50%, #0a1a0d 100%);">
+        <div class="max-w-4xl mx-auto">
+            <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-green-400 mb-6 reveal-up">¿Listo para empezar?</p>
+            <h2 class="text-4xl md:text-7xl font-black tracking-tighter leading-none mb-8 reveal-up" style="transition-delay:0.1s;">
+                Tu instalación,<br>
+                <span class="italic font-serif font-normal text-green-300 text-3xl md:text-5xl">en menos de 30 días.</span>
+            </h2>
+            <p class="text-gray-400 text-xl leading-relaxed max-w-xl mx-auto mb-12 reveal-up" style="transition-delay:0.2s;">
+                Solicita tu estudio de viabilidad gratuito hoy. Sin compromiso, sin permanencia. En 48 horas tienes el análisis completo de cuánto puedes ahorrar.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center reveal-up" style="transition-delay:0.3s;">
+                <a href="index.html#contacto" class="inline-block px-12 py-5 rounded-full text-base font-black uppercase tracking-widest text-black transition hover:scale-105 shadow-xl" style="background:#2dc866;">
+                    Solicitar estudio gratuito →
+                </a>
+                <a href="index.html" class="inline-block px-12 py-5 rounded-full text-base font-bold uppercase tracking-widest border border-white/30 hover:bg-white hover:text-black transition">
+                    Volver al inicio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="pt-16 md:pt-40 pb-10 px-8 md:px-24 overflow-hidden" style="background-color: #ffffff; color: #111111;">
+        <div class="flex flex-col md:flex-row justify-between items-start mb-12 md:mb-32 gap-12 md:gap-24 relative z-10">
+            <h2 class="text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter leading-none">Recibe consejos <br> de ahorro.</h2>
+            <div class="w-full max-w-lg">
+                <div class="border-b-2 border-gray-200 pb-4 flex items-center">
+                    <input type="email" placeholder="Tu email" class="w-full bg-transparent outline-none text-2xl font-light py-2 text-gray-900 placeholder-gray-400" aria-label="Email">
+                    <button class="text-[10px] font-bold uppercase tracking-widest ml-4 hover:opacity-50 transition text-gray-900">Suscribir</button>
+                </div>
+                <p class="text-[10px] text-gray-400 mt-4 uppercase tracking-widest">Noticias, tarifas y trucos para pagar menos. Cada semana.</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 text-[11px] font-black uppercase tracking-[0.2em] mb-12 md:mb-32 relative z-10">
+            <div class="flex flex-col space-y-6">
+                <p class="text-gray-500">Servicios</p>
+                <a href="index.html#servicios" class="hover:text-gray-400">Solar</a>
+                <a href="index.html#servicios" class="hover:text-gray-400">Gas</a>
+                <a href="index.html#servicios" class="hover:text-gray-400">Empresas</a>
+            </div>
+            <div class="flex flex-col space-y-6">
+                <p class="text-gray-500">Empresa</p>
+                <a href="index.html#nosotros" class="hover:text-gray-400">Nosotros</a>
+                <a href="index.html#ahorro" class="hover:text-gray-400">Por qué elegirnos</a>
+                <a href="instalaciones.html" class="hover:text-gray-400" style="color:#2dc866;">Instalaciones</a>
+            </div>
+            <div class="flex flex-col space-y-6">
+                <p class="text-gray-500">Social</p>
+                <a href="#" class="hover:text-gray-400">Instagram</a>
+                <a href="#" class="hover:text-gray-400">LinkedIn</a>
+            </div>
+            <div class="flex flex-col space-y-6">
+                <p class="text-gray-500">Legal</p>
+                <a href="#" class="hover:text-gray-400">Privacidad</a>
+                <a href="index.html#contacto" class="hover:text-gray-400">Contacto</a>
+            </div>
+        </div>
+
+        <div class="text-[14vw] font-black leading-none tracking-tighter select-none pointer-events-none -mb-20 transform scale-110" style="color: rgba(0,0,0,0.04);">
+            OPTIMIZARE
+        </div>
+    </footer>
+
+    <!-- ===== BOTÓN FLOTANTE WHATSAPP ===== -->
+    <a id="whatsapp-btn" href="https://wa.me/34600000000?text=Hola%2C%20me%20interesa%20conocer%20vuestras%20soluciones%20de%20energ%C3%ADa%20solar%20y%20gas." target="_blank" rel="noopener noreferrer"
+        class="fixed bottom-8 right-8 z-[200] bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform"
+        aria-label="Contactar por WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                const isOpen = mobileMenu.style.display !== 'none' && mobileMenu.style.getPropertyValue('display') !== 'none!important';
+                if (mobileMenu.classList.contains('hidden-menu')) {
+                    mobileMenu.classList.remove('hidden-menu');
+                    mobileMenu.style.display = 'flex';
+                } else {
+                    mobileMenu.style.display = 'none';
+                    mobileMenu.classList.add('hidden-menu');
+                }
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.style.display = 'none';
+                });
+            });
+        }
+
+        // Reveal on scroll
+        const revealEls = document.querySelectorAll('.reveal-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        revealEls.forEach(el => observer.observe(el));
+
+        // Trigger hero reveals immediately
+        document.querySelectorAll('.reveal-up').forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+                el.classList.add('revealed');
+            }
+        });
+    </script>
+</body>
+</html>
