@@ -263,12 +263,12 @@ html.lenis {
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
 
-    /* Hero logo más compacto */
+    /* ── Hero ── */
     .hero-logo {
-        font-size: 20vw;
+        font-size: 18vw;
     }
 
-    /* Horizontal scroll → apilado vertical */
+    /* ── Horizontal scroll → apilado vertical ── */
     .horizontal-wrap {
         flex-direction: column !important;
         width: 100% !important;
@@ -276,69 +276,63 @@ html.lenis {
         transform: none !important;
     }
 
+    /* Asegurar que el wrapper no tenga altura fija por GSAP */
+    #horizontal-wrapper {
+        height: auto !important;
+        position: relative !important;
+    }
+
     .h-panel {
         width: 100% !important;
         height: auto !important;
-        min-height: 100svh;
-        padding: 6rem 1.5rem 4rem;
+        min-height: 85svh;
+        padding: 6rem 1.25rem 3.5rem;
     }
 
-    /* Service row font sizes */
-    .service-row h3 {
-        font-size: 2.75rem !important;
-        line-height: 1;
+    /* Slide 1 — heading responsive */
+    .h-panel .panel-content > h2 {
+        font-size: clamp(1.75rem, 7vw, 2.5rem) !important;
+        margin-bottom: 1.25rem !important;
     }
 
-    /* Support grid card heights */
+    /* ── svc-title: evitar desbordamiento en pantallas pequeñas ── */
+    .svc-title {
+        font-size: 2.2rem !important;
+        white-space: normal !important;
+        line-height: 1.05;
+    }
+
+    .svc-inner {
+        padding: 2rem 1.25rem !important;
+    }
+
+    /* ── Support grid card heights ── */
     #ahorro .rounded-\[40px\] {
-        height: 260px !important;
+        height: 240px !important;
     }
 
-    /* Success cases cards */
-    .news-card .rounded-\[60px\] {
-        border-radius: 2rem !important;
-    }
-
-    /* Success case headings */
+    /* ── Success case headings ── */
     .news-card h4 {
-        font-size: 1.75rem !important;
-        line-height: 1.2;
+        font-size: 1.5rem !important;
+        line-height: 1.25;
     }
 
-    /* Horizontal scroll slide 2 cards */
-    #horizontal-wrapper .rounded-\[40px\] {
-        height: 260px !important;
+    /* ── Footer: evitar overflow horizontal ── */
+    footer .text-\[14vw\] {
+        font-size: 12vw !important;
+        overflow: hidden;
     }
 
-    /* Service items — disable desc reveal on mobile (no hover) */
-    .service-item .service-desc {
-        display: none;
+    /* ── WhatsApp button ── */
+    #whatsapp-btn {
+        width: 3rem !important;
+        height: 3rem !important;
+        bottom: 1.25rem !important;
+        right: 1.25rem !important;
     }
 
-    /* Service items font size */
-    .service-title {
-        font-size: 2.75rem !important;
-        line-height: 1;
-    }
-
-    /* Services details expand */
-    .service-row:hover .details {
-        max-height: 400px;
-    }
-
-    /* Reduce service-row padding on hover */
-    .service-row:hover {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-
-    /* Floating decorative image in nosotros already hidden md:block */
-
-    /* WhatsApp button smaller on mobile */
-    .fixed.bottom-8.right-8 {
-        width: 3rem;
-        height: 3rem;
-        bottom: 1.5rem;
-        right: 1.5rem;
+    #whatsapp-btn svg {
+        width: 1.5rem !important;
+        height: 1.5rem !important;
     }
 }
