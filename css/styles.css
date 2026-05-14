@@ -168,6 +168,18 @@ body {
     color: #2dc866;
 }
 
+/* Chips de subtipo dentro de Fotovoltaica */
+.svc-chip {
+    border: 1px solid rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.5);
+    transition: border-color 0.4s ease, color 0.4s ease;
+}
+
+.svc-row:hover .svc-chip {
+    border-color: rgba(45,200,102,0.45);
+    color: rgba(45,200,102,0.85);
+}
+
 /* Flecha */
 .svc-arrow {
     font-size: clamp(1.5rem, 3vw, 3rem);
@@ -263,97 +275,82 @@ html.lenis {
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
 
-    /* ── Hero ── */
+    /* Hero logo más compacto */
     .hero-logo {
-        font-size: 18vw;
+        font-size: 20vw;
     }
 
-    /* ── Horizontal scroll → swipe lateral con scroll-snap (igual que desktop) ── */
-    #horizontal-wrapper {
-        overflow-x: scroll !important;
-        overflow-y: hidden !important;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x mandatory;
-        height: 100svh !important;
-        position: relative !important;
-        scrollbar-width: none;
-    }
-
-    #horizontal-wrapper::-webkit-scrollbar {
-        display: none;
-    }
-
+    /* Horizontal scroll → apilado vertical */
     .horizontal-wrap {
-        flex-direction: row !important;
-        width: 400vw !important;
-        height: 100svh !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        height: auto !important;
         transform: none !important;
     }
 
     .h-panel {
-        width: 100vw !important;
-        height: 100svh !important;
-        flex-shrink: 0 !important;
-        scroll-snap-align: start;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        padding: 5.5rem 1.25rem 5rem;
-        scrollbar-width: none;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100svh;
+        padding: 6rem 1.5rem 4rem;
     }
 
-    .h-panel::-webkit-scrollbar {
+    /* Service row font sizes */
+    .service-row h3 {
+        font-size: 2.75rem !important;
+        line-height: 1;
+    }
+
+    /* Support grid card heights */
+    #ahorro .rounded-\[40px\] {
+        height: 260px !important;
+    }
+
+    /* Success cases cards */
+    .news-card .rounded-\[60px\] {
+        border-radius: 2rem !important;
+    }
+
+    /* Success case headings */
+    .news-card h4 {
+        font-size: 1.75rem !important;
+        line-height: 1.2;
+    }
+
+    /* Horizontal scroll slide 2 cards */
+    #horizontal-wrapper .rounded-\[40px\] {
+        height: 260px !important;
+    }
+
+    /* Service items — disable desc reveal on mobile (no hover) */
+    .service-item .service-desc {
         display: none;
     }
 
-    /* Slide 1 — heading responsive */
-    .h-panel .panel-content > h2 {
-        font-size: clamp(1.75rem, 7vw, 2.5rem) !important;
-        margin-bottom: 1.25rem !important;
+    /* Service items font size */
+    .service-title {
+        font-size: 2.75rem !important;
+        line-height: 1;
     }
 
-    /* ── Dots indicador de slide ── */
-    #swipe-dots {
-        display: flex;
+    /* Services details expand */
+    .service-row:hover .details {
+        max-height: 400px;
     }
 
-    /* ── svc-title: evitar desbordamiento ── */
-    .svc-title {
-        font-size: 2.2rem !important;
-        white-space: normal !important;
-        line-height: 1.05;
+    /* Reduce service-row padding on hover */
+    .service-row:hover {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
-    .svc-inner {
-        padding: 2rem 1.25rem !important;
-    }
+    /* Floating decorative image in nosotros already hidden md:block */
 
-    /* ── Support grid card heights ── */
-    #ahorro .rounded-\[40px\] {
-        height: 240px !important;
-    }
-
-    /* ── Success case headings ── */
-    .news-card h4 {
-        font-size: 1.5rem !important;
-        line-height: 1.25;
-    }
-
-    /* ── Footer: evitar overflow horizontal ── */
-    footer .text-\[14vw\] {
-        font-size: 12vw !important;
-        overflow: hidden;
-    }
-
-    /* ── WhatsApp button ── */
-    #whatsapp-btn {
-        width: 3rem !important;
-        height: 3rem !important;
-        bottom: 1.25rem !important;
-        right: 1.25rem !important;
-    }
-
-    #whatsapp-btn svg {
-        width: 1.5rem !important;
-        height: 1.5rem !important;
+    /* WhatsApp button smaller on mobile */
+    .fixed.bottom-8.right-8 {
+        width: 3rem;
+        height: 3rem;
+        bottom: 1.5rem;
+        right: 1.5rem;
     }
 }

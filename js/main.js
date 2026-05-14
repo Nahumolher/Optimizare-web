@@ -78,18 +78,6 @@ if (window.innerWidth >= 768) {
 // 5. Background Color Shift
 // --------------------------------------------------------------------------
 
-// Blanco → Verde oscuro al entrar al scroll horizontal
-gsap.to('body', {
-    backgroundColor: '#0c1f11',
-    color: '#fff',
-    scrollTrigger: {
-        trigger: '#horizontal-wrapper',
-        start: 'top 50%',
-        end: 'top top',
-        scrub: true,
-    },
-});
-
 // Verde oscuro → Verde oscuro al salir del scroll horizontal (servicios también es oscuro)
 gsap.to('body', {
     backgroundColor: '#0c1f11',
@@ -291,43 +279,6 @@ if (menuToggle) {
         });
     });
 }
-
-// --------------------------------------------------------------------------
-// 10. Mobile swipe dots — tracking del slide activo
-// --------------------------------------------------------------------------
-(function () {
-    if (window.innerWidth >= 768) return; // solo mobile
-
-    const wrapper   = document.getElementById('horizontal-wrapper');
-    const dots      = document.querySelectorAll('.swipe-dot');
-    const dotsEl    = document.getElementById('swipe-dots');
-    const hintEl    = document.getElementById('swipe-hint');
-
-    if (!wrapper || !dots.length) return;
-
-    // Mostrar dots y hint
-    dotsEl.style.display = 'flex';
-    hintEl.style.display = 'block';
-
-    // Ocultar el hint tras 3 segundos
-    setTimeout(() => {
-        hintEl.style.opacity = '0';
-        hintEl.style.transition = 'opacity 0.6s ease';
-        setTimeout(() => { hintEl.style.display = 'none'; }, 600);
-    }, 3000);
-
-    function updateDots() {
-        const idx = Math.round(wrapper.scrollLeft / window.innerWidth);
-        dots.forEach((dot, i) => {
-            const active = i === idx;
-            dot.style.width      = active ? '1.5rem' : '0.375rem';
-            dot.style.background = active ? '#2dc866' : 'rgba(255,255,255,0.3)';
-        });
-    }
-
-    wrapper.addEventListener('scroll', updateDots, { passive: true });
-    updateDots(); // estado inicial
-})();
 
 // --------------------------------------------------------------------------
 // 9. EmailJS — Automatización de emails

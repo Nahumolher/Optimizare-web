@@ -19,7 +19,7 @@
     <!-- ===== NAVEGACIÓN ===== -->
     <nav class="fixed top-0 w-full z-[100] px-8 md:px-10 py-6 md:py-8 flex justify-between items-center mix-blend-difference text-white">
         <div class="flex items-center">
-            <img src="img/1.png" alt="Optimizare" class="h-12 md:h-28 w-auto" style="filter: brightness(0) invert(1);">
+            <img src="img/1.png" alt="Optimizare" class="h-28 w-auto" style="filter: brightness(0) invert(1);">
         </div>
         <div class="hidden md:flex space-x-8 text-[10px] font-bold uppercase tracking-[0.2em]">
             <a href="#servicios" class="hover:opacity-60 transition">Servicios</a>
@@ -69,29 +69,81 @@
         <div class="absolute bottom-10 text-[10px] uppercase tracking-widest font-bold text-white opacity-40 animate-pulse">Descubre más</div>
     </section>
 
-    <!-- ===== INTRO TEXT SECTION ===== -->
-    <section id="nosotros" class="min-h-screen flex items-center px-8 md:px-24 py-24 lg:py-0 lg:h-screen overflow-x-hidden lg:overflow-hidden" style="background-color: #ffffff; color: #111111;">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+    <!-- ===== CALCULADORA ===== -->
+    <section id="nosotros" class="min-h-screen flex items-center px-8 md:px-24 py-24 lg:py-0 lg:h-screen overflow-hidden" style="background-color: #0c1f11; color: #ffffff;">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center w-full">
+            <!-- Texto izquierdo -->
             <div>
-                <p class="text-green-600 font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Energía Solar &amp; Gas · Instalaciones Certificadas</p>
-                <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif leading-[1.05] tracking-tight mb-6 text-gray-900">
-                    Tu factura es cara.
-                    <span class="italic text-green-600">No tiene por qué serlo.</span>
+                <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-green-400 mb-4">Ahorra desde el día 1</p>
+                <h2 class="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-8 text-white leading-none">
+                    ¿Autónomo<br>o empresa?<br>
+                    <span class="italic font-serif font-normal text-green-300 text-4xl md:text-5xl">Hay una solución<br>para ti.</span>
                 </h2>
-                <p class="text-base text-gray-600 leading-relaxed max-w-lg mb-6">
-                    Optimizare ayuda a autónomos y empresas a reducir su gasto energético hasta un <strong class="text-gray-900">70%</strong> mediante contratos de energía optimizados e instalaciones de placas solares certificadas. Sin letra pequeña, sin permanencia.
-                </p>
-                <a href="#contacto" class="inline-block px-8 py-4 rounded-full text-sm font-bold uppercase tracking-widest transition text-black" style="background-color: #2dc866;">Quiero saber cuánto ahorro</a>
+                <p class="text-gray-400 text-lg leading-relaxed max-w-sm">Introduce tu factura actual y te mostramos exactamente cuánto podrías ahorrarte cada año.</p>
             </div>
-            <div class="relative h-[200px] md:h-[55vh] lg:h-[70vh] grid grid-cols-2 grid-rows-2 gap-3 mt-8 lg:mt-0">
-                <div id="mosaic-main" class="row-span-2 rounded-[30px] overflow-hidden shadow-2xl">
-                    <img src="img/instalacion%202.jpg" class="w-full h-full object-cover hover:scale-105 transition duration-1000" alt="Instalación solar residencial">
+            <!-- Calculadora -->
+            <div class="rounded-[40px] p-8 md:p-10 relative overflow-hidden" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(20px);">
+                <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(45,200,102,0.15) 0%, transparent 70%);"></div>
+                <div class="mb-7">
+                    <p class="text-xs font-bold uppercase tracking-[0.3em] text-green-400 mb-1">Calculadora de ahorro</p>
+                    <h3 class="text-3xl font-black tracking-tighter text-white leading-none">¿Cuánto podrías ahorrar?</h3>
                 </div>
-                <div id="mosaic-top" class="rounded-[30px] overflow-hidden shadow-xl">
-                    <img src="img/placa%201.jpg" class="w-full h-full object-cover hover:scale-105 transition duration-1000" alt="Placas solares">
+                <div class="grid grid-cols-2 gap-5 mb-5">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-green-400/70 mb-2.5">Tipo de cliente</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button data-tipo="autonomo" class="calc-tipo-btn rounded-xl py-3 text-xs font-bold uppercase tracking-wider transition-all duration-200 text-white/60" style="border: 1px solid rgba(255,255,255,0.15);">Autónomo</button>
+                            <button data-tipo="empresa" class="calc-tipo-btn rounded-xl py-3 text-xs font-bold uppercase tracking-wider transition-all duration-200 text-white/60" style="border: 1px solid rgba(255,255,255,0.15);">Empresa</button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-green-400/70 mb-2.5">¿Tiene tejado?</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button data-tejado="si" class="calc-tejado-btn rounded-xl py-3 text-xs font-bold uppercase tracking-wider transition-all duration-200 text-white/60" style="border: 1px solid rgba(255,255,255,0.15);">Sí</button>
+                            <button data-tejado="no" class="calc-tejado-btn rounded-xl py-3 text-xs font-bold uppercase tracking-wider transition-all duration-200 text-white/60" style="border: 1px solid rgba(255,255,255,0.15);">No</button>
+                        </div>
+                    </div>
                 </div>
-                <div id="mosaic-bottom" class="rounded-[30px] overflow-hidden shadow-xl">
-                    <img src="img/placa%203.jpg" class="w-full h-full object-cover hover:scale-105 transition duration-1000" alt="Paneles solares">
+                <div class="grid grid-cols-3 gap-4 mb-5">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-green-400/70 mb-2.5">kWh/mes</label>
+                        <input id="calc-kwh" type="number" min="0" placeholder="1200" class="w-full rounded-xl px-4 py-3.5 text-white text-base font-bold outline-none placeholder-white/20" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); transition: border-color .2s;">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-green-400/70 mb-2.5">Potencia kW</label>
+                        <input id="calc-potencia" type="number" min="0" step="0.1" placeholder="15.4" class="w-full rounded-xl px-4 py-3.5 text-white text-base font-bold outline-none placeholder-white/20" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); transition: border-color .2s;">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-green-400/70 mb-2.5">€/kWh</label>
+                        <input id="calc-precio" type="number" min="0" step="0.001" placeholder="0.18" class="w-full rounded-xl px-4 py-3.5 text-white text-base font-bold outline-none placeholder-white/20" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); transition: border-color .2s;">
+                    </div>
+                </div>
+                <p id="calc-error" style="display:none;color:#f87171" class="mb-3 text-xs font-bold text-center"></p>
+                <button id="calc-btn" class="w-full py-4 rounded-2xl text-sm font-black uppercase tracking-widest transition-all duration-300 hover:scale-[1.02] hover:shadow-lg text-black" style="background: linear-gradient(135deg, #2dc866, #22a854); box-shadow: 0 4px 24px rgba(45,200,102,0.35);">
+                    Calcular mi ahorro →
+                </button>
+                <div id="calc-resultado" style="display:none; background: rgba(45,200,102,0.08); border: 1px solid rgba(45,200,102,0.2);" class="mt-5 rounded-2xl p-5 relative overflow-hidden">
+                    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at top left, rgba(45,200,102,0.1) 0%, transparent 60%);"></div>
+                    <p class="text-[10px] uppercase tracking-widest mb-4 text-green-400 font-bold relative z-10">Tu ahorro estimado</p>
+                    <div class="grid grid-cols-4 gap-3 mb-4 relative z-10">
+                        <div class="rounded-xl p-3 text-center" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+                            <p class="text-[8px] uppercase tracking-widest mb-1 text-green-400/70">Mensual</p>
+                            <p id="calc-mensual" class="text-base font-black tracking-tighter text-white">—</p>
+                        </div>
+                        <div class="rounded-xl p-3 text-center" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+                            <p class="text-[8px] uppercase tracking-widest mb-1 text-green-400/70">Anual</p>
+                            <p id="calc-ahorro-num" class="text-base font-black tracking-tighter text-white">—</p>
+                        </div>
+                        <div class="rounded-xl p-3 text-center" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+                            <p class="text-[8px] uppercase tracking-widest mb-1 text-green-400/70">kWh/año</p>
+                            <p id="calc-kwh-ahorro" class="text-base font-black tracking-tighter text-white">—</p>
+                        </div>
+                        <div class="rounded-xl p-3 text-center" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+                            <p class="text-[8px] uppercase tracking-widest mb-1 text-green-400/70">Meses 0€</p>
+                            <p id="calc-meses" class="text-base font-black tracking-tighter text-white">—</p>
+                        </div>
+                    </div>
+                    <a href="#contacto" class="block text-center py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 relative z-10 text-black hover:opacity-90" style="background: #2dc866;">Quiero este ahorro →</a>
                 </div>
             </div>
         </div>
@@ -114,7 +166,7 @@
             <!-- Slide 2: Pilares -->
             <div class="h-panel bg-[#0f2916]">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 w-full panel-content">
-                    <div class="group p-6 md:p-12 border border-white/10 rounded-[40px] hover:bg-white hover:text-black transition duration-500 overflow-hidden relative h-[200px] md:h-[500px] flex flex-col justify-end">
+                    <div class="group p-12 border border-white/10 rounded-[40px] hover:bg-white hover:text-black transition duration-500 overflow-hidden relative h-[500px] flex flex-col justify-end">
                         <img src="img/instalacion.jpg" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity" alt="Ahorro energético">
                         <div class="relative z-10">
                             <span class="text-5xl block mb-8 italic font-serif">01</span>
@@ -122,7 +174,7 @@
                             <p class="opacity-60 group-hover:opacity-100">Hasta un 70% menos en tu factura desde el primer mes de instalación.</p>
                         </div>
                     </div>
-                    <div class="group p-6 md:p-12 border border-white/10 rounded-[40px] hover:bg-white hover:text-black transition duration-500 overflow-hidden relative h-[200px] md:h-[500px] flex flex-col justify-end md:mt-24">
+                    <div class="group p-8 md:p-12 border border-white/10 rounded-[40px] hover:bg-white hover:text-black transition duration-500 overflow-hidden relative h-[260px] md:h-[500px] flex flex-col justify-end md:mt-24">
                         <img src="img/placa%202.jpg" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity" alt="Sostenibilidad">
                         <div class="relative z-10">
                             <span class="text-5xl block mb-8 italic font-serif">02</span>
@@ -130,7 +182,7 @@
                             <p class="opacity-60 group-hover:opacity-100">Energía 100% limpia. Reduce tu huella de carbono y cumple normativa ESG.</p>
                         </div>
                     </div>
-                    <div class="group p-6 md:p-12 border border-white/10 rounded-[40px] hover:bg-white hover:text-black transition duration-500 overflow-hidden relative h-[200px] md:h-[500px] flex flex-col justify-end">
+                    <div class="group p-12 border border-white/10 rounded-[40px] hover:bg-white hover:text-black transition duration-500 overflow-hidden relative h-[500px] flex flex-col justify-end">
                         <img src="img/edificio%20placa.jpg" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity" alt="Autonomía energética">
                         <div class="relative z-10">
                             <span class="text-5xl block mb-8 italic font-serif">03</span>
@@ -147,122 +199,42 @@
                 <div class="panel-overlay"></div>
                 <div class="panel-content w-full">
                     <p class="text-[10px] font-bold uppercase tracking-[0.4em] mb-12 text-gray-400 text-center">Clientes Optimizare</p>
-                    <h3 class="text-xl md:text-5xl lg:text-7xl font-serif italic text-center leading-tight max-w-5xl mx-auto">
+                    <h3 class="text-5xl md:text-7xl font-serif italic text-center leading-tight max-w-5xl mx-auto">
                         &ldquo;Con Optimizare ahorramos el 60% en nuestra factura de luz desde el primer mes. La instalación fue rápida, limpia y sin complicaciones.&rdquo;
                     </h3>
                     <p class="mt-12 text-center text-gray-400 font-bold uppercase tracking-widest">— Carlos Martínez, Taller Mecánico · Madrid</p>
                 </div>
             </div>
 
-            <!-- Slide 4: Calculadora -->
-            <div class="h-panel" style="background: linear-gradient(135deg, #0a1a0d 0%, #0f2916 50%, #0a1a0d 100%);">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full panel-content">
-
-                    <!-- Calculadora -->
-                    <div class="rounded-[40px] p-8 md:p-10 relative overflow-hidden" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(20px);">
-                        <!-- Glow decorativo -->
-                        <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(45,200,102,0.15) 0%, transparent 70%);"></div>
-
-                        <div class="mb-7">
-                            <p class="text-xs font-bold uppercase tracking-[0.3em] text-green-400 mb-1">Calculadora de ahorro</p>
-                            <h3 class="text-3xl font-black tracking-tighter text-white leading-none">¿Cuánto podrías ahorrar?</h3>
-                        </div>
-
-                        <!-- Fila 1: tipo + tejado -->
-                        <div class="grid grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="block text-[10px] font-bold uppercase tracking-widest text-green-400/70 mb-2.5">Tipo de cliente</label>
-                                <div class="grid grid-cols-2 gap-2">
-                                    <button data-tipo="autonomo" class="calc-tipo-btn rounded-xl py-3 text-xs font-bold uppercase tracking-wider transition-all duration-200 text-white/60" style="border: 1px solid rgba(255,255,255,0.15);">Autónomo</button>
-                                    <button data-tipo="empresa" class="calc-tipo-btn rounded-xl py-3 text-xs font-bold uppercase tracking-wider transition-all duration-200 text-white/60" style="border: 1px solid rgba(255,255,255,0.15);">Empresa</button>
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-bold uppercase tracking-widest text-green-400/70 mb-2.5">¿Tiene tejado?</label>
-                                <div class="grid grid-cols-2 gap-2">
-                                    <button data-tejado="si" class="calc-tejado-btn rounded-xl py-3 text-xs font-bold uppercase tracking-wider transition-all duration-200 text-white/60" style="border: 1px solid rgba(255,255,255,0.15);">Sí</button>
-                                    <button data-tejado="no" class="calc-tejado-btn rounded-xl py-3 text-xs font-bold uppercase tracking-wider transition-all duration-200 text-white/60" style="border: 1px solid rgba(255,255,255,0.15);">No</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Fila 2: inputs -->
-                        <div class="grid grid-cols-3 gap-2 md:gap-4 mb-5">
-                            <div>
-                                <label class="block text-[10px] font-bold uppercase tracking-widest text-green-400/70 mb-2.5">kWh/mes</label>
-                                <input id="calc-kwh" type="number" min="0" placeholder="1200" class="w-full rounded-xl px-4 py-3.5 text-white text-base font-bold outline-none placeholder-white/20" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); transition: border-color .2s;">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-bold uppercase tracking-widest text-green-400/70 mb-2.5">Potencia kW</label>
-                                <input id="calc-potencia" type="number" min="0" step="0.1" placeholder="15.4" class="w-full rounded-xl px-4 py-3.5 text-white text-base font-bold outline-none placeholder-white/20" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); transition: border-color .2s;">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-bold uppercase tracking-widest text-green-400/70 mb-2.5">€/kWh</label>
-                                <input id="calc-precio" type="number" min="0" step="0.001" placeholder="0.18" class="w-full rounded-xl px-4 py-3.5 text-white text-base font-bold outline-none placeholder-white/20" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); transition: border-color .2s;">
-                            </div>
-                        </div>
-
-
-
-                        <p id="calc-error" style="display:none;color:#f87171" class="mb-3 text-xs font-bold text-center"></p>
-                        <button id="calc-btn" class="w-full py-4 rounded-2xl text-sm font-black uppercase tracking-widest transition-all duration-300 hover:scale-[1.02] hover:shadow-lg text-black" style="background: linear-gradient(135deg, #2dc866, #22a854); box-shadow: 0 4px 24px rgba(45,200,102,0.35);">
-                            Calcular mi ahorro →
-                        </button>
-
-                        <!-- Resultado -->
-                        <div id="calc-resultado" style="display:none; background: rgba(45,200,102,0.08); border: 1px solid rgba(45,200,102,0.2);" class="mt-5 rounded-2xl p-5 relative overflow-hidden">
-                            <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at top left, rgba(45,200,102,0.1) 0%, transparent 60%);"></div>
-                            <p class="text-[10px] uppercase tracking-widest mb-4 text-green-400 font-bold relative z-10">Tu ahorro estimado</p>
-                            <div class="grid grid-cols-4 gap-3 mb-4 relative z-10">
-                                <div class="rounded-xl p-3 text-center" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
-                                    <p class="text-[8px] uppercase tracking-widest mb-1 text-green-400/70">Mensual</p>
-                                    <p id="calc-mensual" class="text-base font-black tracking-tighter text-white">—</p>
-                                </div>
-                                <div class="rounded-xl p-3 text-center" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
-                                    <p class="text-[8px] uppercase tracking-widest mb-1 text-green-400/70">Anual</p>
-                                    <p id="calc-ahorro-num" class="text-base font-black tracking-tighter text-white">—</p>
-                                </div>
-                                <div class="rounded-xl p-3 text-center" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
-                                    <p class="text-[8px] uppercase tracking-widest mb-1 text-green-400/70">kWh/año</p>
-                                    <p id="calc-kwh-ahorro" class="text-base font-black tracking-tighter text-white">—</p>
-                                </div>
-                                <div class="rounded-xl p-3 text-center" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
-                                    <p class="text-[8px] uppercase tracking-widest mb-1 text-green-400/70">Meses 0€</p>
-                                    <p id="calc-meses" class="text-base font-black tracking-tighter text-white">—</p>
-                                </div>
-                            </div>
-                            <a href="#contacto" class="block text-center py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 relative z-10 text-black hover:opacity-90" style="background: #2dc866;">Quiero este ahorro →</a>
-                        </div>
-                    </div>
-
-                    <!-- Texto derecho (oculto en mobile, solo se ve la calculadora) -->
-                    <div class="hidden md:block">
-                        <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-green-400 mb-4">Ahorra desde el día 1</p>
-                        <h2 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter mb-6 md:mb-8 text-white leading-none">
-                            ¿Autónomo<br>o empresa?<br>
-                            <span class="italic font-serif font-normal text-green-300 text-4xl md:text-5xl">Hay una solución<br>para ti.</span>
+            <!-- Slide 4: Nosotros -->
+            <div class="h-panel" style="background-color: #ffffff; color: #111111;">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full panel-content">
+                    <div>
+                        <p class="text-green-600 font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Energía Solar &amp; Gas · Instalaciones Certificadas</p>
+                        <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif leading-[1.05] tracking-tight mb-6 text-gray-900">
+                            Tu factura es cara.
+                            <span class="italic text-green-600">No tiene por qué serlo.</span>
                         </h2>
-                        <p class="text-gray-400 text-lg leading-relaxed mb-8 max-w-sm">Introduce tu factura actual y te mostramos exactamente cuánto podrías ahorrarte cada año.</p>
-                        <a href="#contacto" class="inline-block text-black px-8 py-4 rounded-full text-sm font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-xl" style="background: #2dc866;">Solicitar presupuesto gratuito</a>
+                        <p class="text-base text-gray-600 leading-relaxed max-w-lg mb-6">
+                            Optimizare ayuda a autónomos y empresas a reducir su gasto energético hasta un <strong class="text-gray-900">70%</strong> mediante contratos de energía optimizados e instalaciones de placas solares certificadas. Sin letra pequeña, sin permanencia.
+                        </p>
+                        <a href="#contacto" class="inline-block px-8 py-4 rounded-full text-sm font-bold uppercase tracking-widest transition text-black" style="background-color: #2dc866;">Quiero saber cuánto ahorro</a>
+                    </div>
+                    <div class="relative h-[70vh] grid grid-cols-2 grid-rows-2 gap-3">
+                        <div class="row-span-2 rounded-[30px] overflow-hidden shadow-2xl">
+                            <img src="img/instalacion%202.jpg" class="w-full h-full object-cover hover:scale-105 transition duration-1000" alt="Instalación solar residencial">
+                        </div>
+                        <div class="rounded-[30px] overflow-hidden shadow-xl">
+                            <img src="img/placa%201.jpg" class="w-full h-full object-cover hover:scale-105 transition duration-1000" alt="Placas solares">
+                        </div>
+                        <div class="rounded-[30px] overflow-hidden shadow-xl">
+                            <img src="img/placa%203.jpg" class="w-full h-full object-cover hover:scale-105 transition duration-1000" alt="Paneles solares">
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
-
-        <!-- Dots indicadores (solo mobile) -->
-        <div id="swipe-dots" class="md:hidden" style="display:none; position:absolute; bottom:1.5rem; left:0; right:0; justify-content:center; align-items:center; gap:0.5rem; z-index:20; pointer-events:none;">
-            <span class="swipe-dot" data-index="0" style="width:1.5rem; height:0.375rem; border-radius:9999px; background:#2dc866; transition:all 0.3s ease;"></span>
-            <span class="swipe-dot" data-index="1" style="width:0.375rem; height:0.375rem; border-radius:9999px; background:rgba(255,255,255,0.3); transition:all 0.3s ease;"></span>
-            <span class="swipe-dot" data-index="2" style="width:0.375rem; height:0.375rem; border-radius:9999px; background:rgba(255,255,255,0.3); transition:all 0.3s ease;"></span>
-            <span class="swipe-dot" data-index="3" style="width:0.375rem; height:0.375rem; border-radius:9999px; background:rgba(255,255,255,0.3); transition:all 0.3s ease;"></span>
-        </div>
-
-        <!-- Hint swipe (solo mobile, se oculta tras 3s) -->
-        <div id="swipe-hint" class="md:hidden" style="display:none; position:absolute; bottom:3.5rem; left:0; right:0; text-align:center; z-index:20; pointer-events:none;">
-            <p style="font-size:0.6rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.4);">Desliza &#8592;&nbsp;&nbsp;&#8594;</p>
-        </div>
-
     </div>
 
     <!-- ===== SERVICES SECTION ===== -->
@@ -271,7 +243,7 @@
         <div class="px-8 md:px-20 pt-20 pb-10 flex flex-col md:flex-row justify-between items-end gap-4">
             <div>
                 <p class="text-[10px] font-bold uppercase tracking-[0.35em] text-green-400 mb-3">Nuestros servicios</p>
-                <h2 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none text-white">Lo que<br>hacemos</h2>
+                <h2 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none text-white">Tu energía,<br>nuestra obsesión.</h2>
             </div>
             <p class="text-base text-green-300 font-serif italic max-w-xs text-right">Soluciones energéticas a medida para autónomos y empresas.</p>
         </div>
@@ -287,14 +259,23 @@
                     <div class="absolute inset-0" style="background: rgba(5,20,8,0.72);"></div>
                 </div>
                 <!-- Contenido -->
-                <div class="svc-inner">
-                    <div class="svc-right">
-                        <h3 class="svc-title">Fotovoltaica</h3>
-                        <span class="svc-arrow">→</span>
+                <div class="svc-inner" style="flex-direction: column; align-items: flex-start; gap: 0.75rem;">
+                    <div style="display:flex; align-items:center; gap:1.5rem; width:100%; justify-content:space-between;">
+                        <div style="display:flex; align-items:center; gap:1.5rem;">
+                            <h3 class="svc-title">Fotovoltaica</h3>
+                            <span class="svc-arrow">→</span>
+                        </div>
+                        <div class="svc-desc" style="transform:none; opacity:1; position:static; width:auto;">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-green-400 mb-3">01</p>
+                            <p class="text-sm text-gray-300 leading-relaxed">Instalamos placas solares en tu negocio o vivienda. Estudio de viabilidad, tramitación y puesta en marcha incluida.</p>
+                        </div>
                     </div>
-                    <div class="svc-desc">
-                        <p class="text-[10px] font-bold uppercase tracking-widest text-green-400 mb-3">01</p>
-                        <p class="text-sm text-gray-300 leading-relaxed">Instalamos placas solares en tu negocio o vivienda. Estudio de viabilidad, tramitación y puesta en marcha incluida.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full svc-chip">Autoconsumo conectado a red</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full svc-chip">Autoconsumo con excedentes</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full svc-chip">Autoconsumo sin excedentes</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full svc-chip">Instalación aislada</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full svc-chip">Instalación híbrida</span>
                     </div>
                 </div>
             </a>
@@ -318,7 +299,7 @@
             </a>
 
             <!-- Empresas -->
-            <a href="#contacto" class="svc-row" style="border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <a href="#contacto" class="svc-row" style="border-top: 1px solid rgba(255,255,255,0.1);">
                 <div class="svc-bg">
                     <img src="img/edificio%20placa.jpg" class="w-full h-full object-cover" alt="">
                     <div class="absolute inset-0" style="background: rgba(5,20,8,0.72);"></div>
@@ -335,6 +316,24 @@
                 </div>
             </a>
 
+            <!-- PPA -->
+            <a href="#contacto" class="svc-row" style="border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <div class="svc-bg">
+                    <img src="img/placa%20industria.jpg" class="w-full h-full object-cover" alt="">
+                    <div class="absolute inset-0" style="background: rgba(5,20,8,0.72);"></div>
+                </div>
+                <div class="svc-inner">
+                    <div class="svc-right">
+                        <h3 class="svc-title">PPA</h3>
+                        <span class="svc-arrow">→</span>
+                    </div>
+                    <div class="svc-desc">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-green-400 mb-3">04 · Power Purchase Agreement</p>
+                        <p class="text-sm text-gray-300 leading-relaxed">Consume energía solar sin inversión inicial. Nosotros instalamos, tú pagas solo la energía que produces — siempre por debajo del precio de mercado.</p>
+                    </div>
+                </div>
+            </a>
+
         </div>
 
         <div class="px-8 md:px-20 py-10">
@@ -342,14 +341,104 @@
         </div>
     </section>
 
+    <!-- ===== PRODUCTOS COMPLEMENTARIOS ===== -->
+    <section id="complementarios" class="py-24 md:py-36 px-8 md:px-20 text-white" style="background-color: #0a1a0d;">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- Cabecera -->
+            <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-16 md:mb-24">
+                <div>
+                    <p class="text-[10px] font-bold uppercase tracking-[0.35em] text-green-400 mb-3">Solución integral</p>
+                    <h2 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none text-white">Productos<br>complementarios</h2>
+                </div>
+                <p class="text-base text-green-300 font-serif italic max-w-xs text-right md:text-right">Todo lo que necesitas para tu ecosistema energético, en un solo proveedor.</p>
+            </div>
+
+            <!-- Grid de productos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+
+                <!-- Baterías -->
+                <div class="comp-card group relative overflow-hidden rounded-[32px] p-8 md:p-10 flex flex-col justify-between min-h-[280px] md:min-h-[320px] cursor-pointer" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+                    <div class="absolute inset-0 rounded-[32px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="background: radial-gradient(ellipse at top left, rgba(45,200,102,0.12) 0%, transparent 65%);"></div>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(45,200,102,0.12); border: 1px solid rgba(45,200,102,0.2);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#2dc866" stroke-width="1.5" class="w-6 h-6"><rect x="2" y="7" width="16" height="11" rx="2"/><line x1="22" y1="11" x2="22" y2="14"/></svg>
+                        </div>
+                        <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-green-400 mb-3">01</p>
+                        <h3 class="text-3xl md:text-4xl font-black tracking-tighter text-white mb-4">Baterías</h3>
+                        <p class="text-gray-400 leading-relaxed max-w-sm">Almacena la energía que produces y úsala cuando más la necesitas. Independencia total de la red, incluso de noche.</p>
+                    </div>
+                    <div class="relative z-10 mt-8 flex items-center gap-2 text-green-400 text-sm font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span>Solicitar información</span><span>→</span>
+                    </div>
+                </div>
+
+                <!-- Cargadores VE -->
+                <div class="comp-card group relative overflow-hidden rounded-[32px] p-8 md:p-10 flex flex-col justify-between min-h-[280px] md:min-h-[320px] cursor-pointer" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+                    <div class="absolute inset-0 rounded-[32px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="background: radial-gradient(ellipse at top left, rgba(45,200,102,0.12) 0%, transparent 65%);"></div>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(45,200,102,0.12); border: 1px solid rgba(45,200,102,0.2);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#2dc866" stroke-width="1.5" class="w-6 h-6"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        </div>
+                        <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-green-400 mb-3">02</p>
+                        <h3 class="text-3xl md:text-4xl font-black tracking-tighter text-white mb-4">Cargadores VE</h3>
+                        <p class="text-gray-400 leading-relaxed max-w-sm">Puntos de recarga para vehículos eléctricos en tu hogar o negocio. Instalación homologada y gestión inteligente de carga.</p>
+                    </div>
+                    <div class="relative z-10 mt-8 flex items-center gap-2 text-green-400 text-sm font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span>Solicitar información</span><span>→</span>
+                    </div>
+                </div>
+
+                <!-- Integración con VE -->
+                <div class="comp-card group relative overflow-hidden rounded-[32px] p-8 md:p-10 flex flex-col justify-between min-h-[280px] md:min-h-[320px] cursor-pointer" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+                    <div class="absolute inset-0 rounded-[32px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="background: radial-gradient(ellipse at top left, rgba(45,200,102,0.12) 0%, transparent 65%);"></div>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(45,200,102,0.12); border: 1px solid rgba(45,200,102,0.2);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#2dc866" stroke-width="1.5" class="w-6 h-6"><path d="M19 17H5a2 2 0 0 1-2-2V9l2-4h10l2 4h2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2z"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/></svg>
+                        </div>
+                        <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-green-400 mb-3">03</p>
+                        <h3 class="text-3xl md:text-4xl font-black tracking-tighter text-white mb-4">Integración con VE</h3>
+                        <p class="text-gray-400 leading-relaxed max-w-sm">Tu coche eléctrico conectado al sistema solar. Carga tu vehículo con energía que has producido tú mismo — coste casi cero.</p>
+                    </div>
+                    <div class="relative z-10 mt-8 flex items-center gap-2 text-green-400 text-sm font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span>Solicitar información</span><span>→</span>
+                    </div>
+                </div>
+
+                <!-- Aerotermia + Solar -->
+                <div class="comp-card group relative overflow-hidden rounded-[32px] p-8 md:p-10 flex flex-col justify-between min-h-[280px] md:min-h-[320px] cursor-pointer" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+                    <div class="absolute inset-0 rounded-[32px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="background: radial-gradient(ellipse at top left, rgba(45,200,102,0.12) 0%, transparent 65%);"></div>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(45,200,102,0.12); border: 1px solid rgba(45,200,102,0.2);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#2dc866" stroke-width="1.5" class="w-6 h-6"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+                        </div>
+                        <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-green-400 mb-3">04</p>
+                        <h3 class="text-3xl md:text-4xl font-black tracking-tighter text-white mb-4">Aerotermia + Solar</h3>
+                        <p class="text-gray-400 leading-relaxed max-w-sm">Climatización e ACS ultra-eficientes alimentados por tu propia instalación solar. La combinación más rentable del mercado.</p>
+                    </div>
+                    <div class="relative z-10 mt-8 flex items-center gap-2 text-green-400 text-sm font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span>Solicitar información</span><span>→</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-12 md:mt-16 text-center">
+                <a href="#contacto" class="inline-block text-black px-10 py-4 rounded-full text-sm font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-xl" style="background: #2dc866;">Consultar disponibilidad →</a>
+            </div>
+
+        </div>
+    </section>
+
     <!-- ===== CONTACT FORM SECTION ===== -->
     <section id="contacto" class="py-16 md:py-40 text-white px-8 md:px-24" style="background-color: #0f2916;">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 items-center">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <div>
                 <p class="text-[10px] font-bold uppercase tracking-[0.4em] mb-8 text-gray-500">Sin compromiso · Respuesta en 24 h</p>
                 <h2 class="text-3xl md:text-6xl lg:text-8xl font-black tracking-tighter leading-none mb-8">Calcula cuánto puedes ahorrar</h2>
                 <p class="text-xl text-gray-400 font-light leading-relaxed max-w-md">Déjanos tus datos y un experto en energía te llama en menos de 24 horas con un estudio de ahorro personalizado. Gratis, sin permanencia.</p>
-                <div class="mt-8 md:mt-16 space-y-6">
+                <div class="mt-16 space-y-6">
                     <div class="flex items-center gap-4">
                         <div class="w-2 h-2 bg-white rounded-full flex-shrink-0"></div>
                         <p class="text-gray-300">Estudio de viabilidad gratuito</p>
@@ -529,7 +618,7 @@
     </footer>
 
     <!-- ===== BOTÓN FLOTANTE WHATSAPP ===== -->
-    <a id="whatsapp-btn" href="https://wa.me/34600000000?text=Hola%2C%20me%20interesa%20conocer%20vuestras%20soluciones%20de%20energ%C3%ADa%20solar%20y%20gas." target="_blank" rel="noopener noreferrer"
+    <a id="whatsapp-btn" href="https://wa.me/34684811525?text=Hola%2C%20me%20interesa%20conocer%20vuestras%20soluciones%20de%20energ%C3%ADa%20solar%20y%20gas." target="_blank" rel="noopener noreferrer"
         class="fixed bottom-8 right-8 z-[200] bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform"
         aria-label="Contactar por WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
