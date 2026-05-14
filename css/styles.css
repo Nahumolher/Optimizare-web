@@ -268,25 +268,41 @@ html.lenis {
         font-size: 18vw;
     }
 
-    /* ── Horizontal scroll → apilado vertical ── */
+    /* ── Horizontal scroll → swipe lateral con scroll-snap (igual que desktop) ── */
+    #horizontal-wrapper {
+        overflow-x: scroll !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        height: 100svh !important;
+        position: relative !important;
+        scrollbar-width: none;
+    }
+
+    #horizontal-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+
     .horizontal-wrap {
-        flex-direction: column !important;
-        width: 100% !important;
-        height: auto !important;
+        flex-direction: row !important;
+        width: 400vw !important;
+        height: 100svh !important;
         transform: none !important;
     }
 
-    /* Asegurar que el wrapper no tenga altura fija por GSAP */
-    #horizontal-wrapper {
-        height: auto !important;
-        position: relative !important;
+    .h-panel {
+        width: 100vw !important;
+        height: 100svh !important;
+        flex-shrink: 0 !important;
+        scroll-snap-align: start;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 5.5rem 1.25rem 5rem;
+        scrollbar-width: none;
     }
 
-    .h-panel {
-        width: 100% !important;
-        height: auto !important;
-        min-height: 85svh;
-        padding: 6rem 1.25rem 3.5rem;
+    .h-panel::-webkit-scrollbar {
+        display: none;
     }
 
     /* Slide 1 — heading responsive */
@@ -295,7 +311,12 @@ html.lenis {
         margin-bottom: 1.25rem !important;
     }
 
-    /* ── svc-title: evitar desbordamiento en pantallas pequeñas ── */
+    /* ── Dots indicador de slide ── */
+    #swipe-dots {
+        display: flex;
+    }
+
+    /* ── svc-title: evitar desbordamiento ── */
     .svc-title {
         font-size: 2.2rem !important;
         white-space: normal !important;
