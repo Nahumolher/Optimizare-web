@@ -11,18 +11,12 @@ const lenis = new Lenis({
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
 });
 
-function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
-
 // --------------------------------------------------------------------------
 // 2. GSAP + ScrollTrigger Setup
 // --------------------------------------------------------------------------
 gsap.registerPlugin(ScrollTrigger);
 
-// Vincular Lenis con ScrollTrigger para sincronización perfecta
+// Vincular Lenis con ScrollTrigger — SOLO vía gsap.ticker (no requestAnimationFrame separado)
 lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add((time) => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(0);
@@ -135,7 +129,125 @@ window.addEventListener('load', () => {
         ease: 'expo.out',
         scrollTrigger: { trigger: '#mosaic-bottom', start: 'top 90%' },
     });
+
+    // ── Animaciones filas de servicios ───────────────────────────────────
+
+    gsap.utils.toArray('.svc-row').forEach((row, i) => {
+        // Título desliza desde la izquierda
+        gsap.from(row.querySelector('.svc-title'), {
+            x: -80,
+            opacity: 0,
+            duration: 0.9,
+            ease: 'expo.out',
+            scrollTrigger: { trigger: row, start: 'top 88%' },
+        });
+        // Chips (si los hay) aparecen con stagger después del título
+        const chips = row.querySelectorAll('.svc-chip');
+        if (chips.length) {
+            gsap.from(chips, {
+                y: 20,
+                opacity: 0,
+                duration: 0.6,
+                ease: 'expo.out',
+                stagger: 0.06,
+                delay: 0.25,
+                scrollTrigger: { trigger: row, start: 'top 88%' },
+            });
+        }
+        // Descripción (desktop): NO animar con GSAP para no bloquear el hover CSS
+        // El CSS ya maneja opacity 0→1 en :hover
+        // Línea separadora: se "dibuja" de izquierda a derecha
+        gsap.from(row, {
+            borderTopColor: 'rgba(255,255,255,0)',
+            duration: 0.8,
+            ease: 'expo.out',
+            scrollTrigger: { trigger: row, start: 'top 90%' },
+        });
+    });
+
+    // ── Animaciones de imágenes al hacer scroll ──────────────────────────
+
+    // Mosaico "Nosotros": fotos entran con stagger y dirección alternada
+    gsap.from('.news-card .aspect-\\[16\\/9\\] img', {
+        scale: 1.15,
+        opacity: 0,
+        duration: 1.4,
+        ease: 'expo.out',
+        stagger: 0.2,
+        scrollTrigger: { trigger: '.news-card', start: 'top 85%' },
+    });
+
+    // Tarjetas "¿Por qué Optimizare?": imagen sube con clip reveal
+    gsap.utils.toArray('#ahorro .group .rounded-\\[40px\\]').forEach((img, i) => {
+        gsap.from(img, {
+            y: 80,
+            opacity: 0,
+            duration: 1.1,
+            ease: 'expo.out',
+            delay: i * 0.18,
+            scrollTrigger: { trigger: img, start: 'top 88%' },
+        });
+    });
+
+    // Tarjetas complementarios: escalan desde pequeño al entrar
+    gsap.utils.toArray('.comp-card').forEach((card, i) => {
+        gsap.from(card, {
+            scale: 0.92,
+            opacity: 0,
+            duration: 0.9,
+            ease: 'expo.out',
+            delay: i * 0.12,
+            scrollTrigger: { trigger: card, start: 'top 88%' },
+        });
+    });
+
+    // Filas de servicios: imagen de fondo hace parallax suave
+    gsap.utils.toArray('.svc-bg img').forEach((img) => {
+        gsap.fromTo(img,
+            { y: -30 },
+            {
+                y: 30,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: img.closest('.svc-row'),
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 1.5,
+                },
+            }
+        );
+    });
+
+    // Imagen hero del mosaico mobile: entra desde abajo
+    gsap.from('.block.md\\:hidden.mt-6', {
+        y: 60,
+        opacity: 0,
+        duration: 1.2,
+        ease: 'expo.out',
+        scrollTrigger: { trigger: '.block.md\\:hidden.mt-6', start: 'top 88%' },
+    });
 });
+
+// --------------------------------------------------------------------------
+// Tap en servicios (mobile): muestra imagen de fondo al tocar
+// --------------------------------------------------------------------------
+if (window.innerWidth < 768) {
+    document.querySelectorAll('.svc-row').forEach(row => {
+        row.addEventListener('click', (e) => {
+            // Si se tocó el botón CTA, dejarlo navegar libremente
+            if (e.target.closest('.svc-cta-btn')) return;
+            // Primer tap: mostrar imagen
+            if (!row.classList.contains('tapped')) {
+                document.querySelectorAll('.svc-row').forEach(r => r.classList.remove('tapped'));
+                row.classList.add('tapped');
+            } else {
+                // Segundo tap en el título: cerrar
+                row.classList.remove('tapped');
+            }
+        });
+    });
+}
+
 // --------------------------------------------------------------------------
 // 7. Calculadora de ahorro
 // --------------------------------------------------------------------------

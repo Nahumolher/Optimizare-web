@@ -120,7 +120,35 @@ body {
 
 @media (max-width: 767px) {
     .svc-inner {
-        padding: 2.5rem 2rem;
+        padding: 1.25rem 1.25rem;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+    }
+
+    /* El div interno de Fotovoltaica (título + desc en fila) → apilado en mobile */
+    .svc-inner > div[style*="justify-content:space-between"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0 !important;
+        width: 100%;
+    }
+
+    /* En mobile ocultar flecha que desborda */
+    .svc-arrow {
+        display: none;
+    }
+
+    /* svc-right no empuja contenido fuera */
+    .svc-right {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    /* Tapped: título verde */
+    .svc-row.tapped .svc-title {
+        color: #2dc866;
     }
 }
 
@@ -141,6 +169,26 @@ body {
 
 @media (max-width: 767px) {
     .svc-desc {
+        display: block;
+        width: 100%;
+        text-align: left;
+        opacity: 0 !important;
+        transform: translateY(10px) !important;
+        max-height: 0 !important;
+        overflow: hidden;
+        margin-top: 0;
+        transition: opacity 0.4s ease, transform 0.4s ease, max-height 0.4s ease, margin-top 0.3s ease !important;
+    }
+
+    .svc-row.tapped .svc-desc {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        max-height: 300px !important;
+        margin-top: 0.75rem;
+    }
+
+    /* El número 01/02... se oculta en mobile para no repetir */
+    .svc-desc > p:first-child {
         display: none;
     }
 }
@@ -166,6 +214,39 @@ body {
 .svc-row:hover .svc-title {
     transform: translateY(-8px);
     color: #2dc866;
+}
+
+/* Chips ocultos por defecto, visibles en hover/tapped */
+.svc-chips {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: max-height 0.5s ease, opacity 0.4s ease, transform 0.4s ease;
+}
+
+.svc-row:hover .svc-chips {
+    max-height: 120px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 767px) {
+    .svc-chips {
+        gap: 0.4rem !important;
+    }
+
+    .svc-chip {
+        font-size: 0.6rem !important;
+        padding: 0.3rem 0.65rem !important;
+        letter-spacing: 0.05em !important;
+    }
+
+    .svc-row.tapped .svc-chips {
+        max-height: 120px;
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Chips de subtipo dentro de Fotovoltaica */
@@ -275,9 +356,10 @@ html.lenis {
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
 
-    /* Hero logo más compacto */
+    /* Hero logo — ajustado para que quepa en una línea */
     .hero-logo {
-        font-size: 20vw;
+        font-size: 14.5vw;
+        letter-spacing: -0.04em;
     }
 
     /* Horizontal scroll → apilado vertical */
@@ -293,6 +375,18 @@ html.lenis {
         height: auto !important;
         min-height: 100svh;
         padding: 6rem 1.5rem 4rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Imágenes absolutas en paneles — asegurar que cubren */
+    .h-panel > img,
+    .h-panel .absolute.inset-0 img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     /* Service row font sizes */
@@ -333,6 +427,53 @@ html.lenis {
         line-height: 1;
     }
 
+    /* svc-title — prevent horizontal overflow and allow wrap */
+    .svc-title {
+        font-size: 2rem !important;
+        white-space: normal !important;
+        line-height: 1.1 !important;
+    }
+
+    /* svc-row — recorte lateral pero NO vertical para que el botón y texto se vean */
+    .svc-row {
+        overflow-x: hidden;
+        overflow-y: visible;
+    }
+
+    /* Botón CTA dentro de fila — oculto hasta tap */
+    .svc-cta-btn {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(8px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .svc-row.tapped .svc-cta-btn {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0);
+    }
+    .svc-row.tapped .svc-bg {
+        opacity: 1;
+    }
+
+    .svc-row.tapped .svc-bg img {
+        filter: brightness(0.35) saturate(0.7);
+    }
+
+    .svc-row.tapped .svc-title {
+        color: #2dc866;
+    }
+
+    /* Botón CTA — ancho completo al hacer tap */
+    .svc-row.tapped .svc-cta-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+        padding: 0.875rem 1.5rem;
+    }
+
     /* Services details expand */
     .service-row:hover .details {
         max-height: 400px;
@@ -352,5 +493,73 @@ html.lenis {
         height: 3rem;
         bottom: 1.5rem;
         right: 1.5rem;
+    }
+
+    /* Nav — reduce vertical padding on mobile */
+    nav {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    /* Hero subtitle — smaller on very small screens */
+    #hero-sub {
+        font-size: 1.25rem !important;
+        padding: 0 1rem;
+    }
+
+    /* Horizontal scroll slide 2 — reduce card padding */
+    #horizontal-wrapper .p-12 {
+        padding: 1.5rem !important;
+    }
+
+    /* Support grid images — reduce height */
+    #ahorro .h-\[500px\] {
+        height: 260px !important;
+    }
+
+    /* Contact section — tighten padding */
+    #contacto {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+
+    /* Complementarios section — tighten padding */
+    #complementarios {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+
+    /* Cases section — tighten padding */
+    section.py-10 {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive extra — pantallas muy pequeñas (< 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+    /* Calculadora tipo/tejado buttons — reducir padding */
+    .calc-tipo-btn,
+    .calc-tejado-btn {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+        font-size: 0.65rem !important;
+    }
+
+    /* Texto grande en sección calculadora */
+    #nosotros h2 {
+        font-size: 2.5rem !important;
+    }
+
+    /* Horizontal panels — menos padding en pantallas muy pequeñas */
+    .h-panel {
+        padding: 5rem 1rem 3rem !important;
+    }
+
+    /* Footer newsletter heading */
+    footer h2 {
+        font-size: 2rem !important;
     }
 }
